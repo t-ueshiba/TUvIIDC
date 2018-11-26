@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 2.4)
-
 project(TUvIIDC++)
 
 if(COMMAND cmake_policy)
@@ -16,11 +15,9 @@ set(CMAKE_BUILD_TYPE		Release)
 add_definitions(-DNDEBUG)
 
 file(GLOB sources *.cc)
+add_library(${PROJECT_NAME} SHARED ${sources})
+target_link_libraries(${PROJECT_NAME} TUIIDC++ TUv++)
 
-add_library(TUvIIDC++ SHARED ${sources})
-
-target_link_libraries(TUvIIDC++ TUIIDC++ TUv++)
-
-install(TARGETS TUvIIDC++ LIBRARY DESTINATION lib)
+install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib)
 
 add_subdirectory(TU)
