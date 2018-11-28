@@ -14,6 +14,8 @@ set(CMAKE_CXX_FLAGS_DEBUG	"-g")
 set(CMAKE_BUILD_TYPE		Release)
 add_definitions(-DNDEBUG)
 
+link_directories(${CMAKE_INSTALL_PREFIX}/lib)
+
 file(GLOB sources *.cc)
 add_library(${PROJECT_NAME} SHARED ${sources})
 target_link_libraries(${PROJECT_NAME} TUIIDC++ TUv++)
