@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.4)
+cmake_minimum_required(VERSION 3.0)
 project(TUvIIDC++)
 
 if(COMMAND cmake_policy)
@@ -13,6 +13,10 @@ set(CMAKE_CXX_FLAGS_RELEASE	"-Wall -O3")
 set(CMAKE_CXX_FLAGS_DEBUG	"-g")
 set(CMAKE_BUILD_TYPE		Release)
 add_definitions(-DNDEBUG)
+
+if(APPLE)
+  set(MACOSX_RPATH TRUE)
+endif()
 
 link_directories(${CMAKE_INSTALL_PREFIX}/lib)
 
