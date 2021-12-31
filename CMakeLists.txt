@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(TUvIIDC++)
+project(TUvIIDC)
 
 if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 NEW)
@@ -22,7 +22,7 @@ link_directories(${CMAKE_INSTALL_PREFIX}/lib)
 
 file(GLOB sources *.cc)
 add_library(${PROJECT_NAME} SHARED ${sources})
-target_link_libraries(${PROJECT_NAME} TUIIDC++ TUv++)
+target_link_libraries(${PROJECT_NAME} TUIIDC TUv)
 
 install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION lib)
 
