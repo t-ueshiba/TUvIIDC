@@ -46,7 +46,7 @@ setFormat(CAMERAS&& cameras, CmdId id, CmdVal val, Window& window)
       case IIDCCamera::Format_7_5:
       case IIDCCamera::Format_7_6:
       case IIDCCamera::Format_7_7:
-	if (TU::size(cameras) != 0)
+	if (std::size(cameras) != 0)
 	{
 	    const auto	format7 = IIDCCamera::uintToFormat(id);
 	    size_t	u0, v0, width, height, packetSize;
@@ -81,7 +81,7 @@ refreshFeatureCmds(const CAMERAS& cameras, CmdPane& cmdPane)
 {
     auto	camera = std::begin(cameras);
     
-    switch (TU::size(cameras))
+    switch (std::size(cameras))
     {
       case 0:
 	return;
@@ -112,7 +112,7 @@ setFeature(CAMERAS&& cameras, CmdId id, CmdVal val, CmdPane& cmdPane)
 	return true;
     }
 
-    if (TU::size(cameras) > 1 &&		// カメラが複数かつ
+    if (std::size(cameras) > 1 &&		// カメラが複数かつ
 	!cmdPane.getValue(IIDCCAMERA_ALL))	// 全カメラ操作モードでなければ...
     {
 	std::advance(camera, cmdPane.getValue(IIDCCAMERA_CHOICE));
