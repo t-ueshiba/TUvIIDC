@@ -16,7 +16,23 @@ if(APPLE)
   set(MACOSX_RPATH TRUE)
 endif()
 
-link_directories(${CMAKE_INSTALL_PREFIX}/lib)
+find_package(PkgConfig REQUIRED)
+find_package(X11 REQUIRED)
+find_package(Boost REQUIRED)
+pkg_check_modules(LIBUSB-1.0 REQUIRED libusb-1.0)
+pkg_check_modules(YAML-CPP REQUIRED yaml-cpp)
+
+include_directories(
+    ${PROJECT_SOURCE_DIR}
+    ${CMAKE_INSTALL_PREFIX}/include
+    ${X11_INCLUDE_DIRS}
+    ${Boost_INCLUDE_DIRS})
+
+link_directories(
+    ${CMAKE_INSTALL_PREFIX}/lib
+    ${LIBUSB-1.0_LIBRARY_DIRS}
+    ${YAML-CPP_LIBRARY_DIRS}
+)
 
 file(GLOB sources *.cc)
 add_library(${PROJECT_NAME} SHARED ${sources})
